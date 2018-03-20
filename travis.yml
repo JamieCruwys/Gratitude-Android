@@ -1,0 +1,20 @@
+language: android
+android:
+  components:
+    - tools
+    - platform-tools
+
+    # The SDK version used to compile your project
+    - android-$SDK_VERSION
+
+    # Additional components
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - addon-google_apis-google-26
+
+    # System image for the emulator
+    - sys-img-armeabi-v7a-android-$ANDROID_VERSION
+env:
+  matrix:
+    - ANDROID_VERSION=26
