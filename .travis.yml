@@ -8,5 +8,4 @@ android:
     - extra-google-m2repository
 env:
   matrix:
-    - BUILD_TOOLS=26.0.3
-    - ANDROID_VERSION=26
+    - BUILD_TOOLS=26.0.3  ANDROID_VERSION=26
