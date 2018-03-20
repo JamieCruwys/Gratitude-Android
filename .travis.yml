@@ -5,7 +5,7 @@ android:
     - platform-tools
 
     # The SDK version used to compile your project
-    - android-$SDK_VERSION
+    - android-$ANDROID_VERSION
 
     # Additional components
     - extra-google-google_play_services
