@@ -1,11 +1,18 @@
 language: android
 android:
   components:
-    - build-tools-$BUILD_TOOLS
-    - android-$ANDROID_VERSION
+    - tools
+    - platform-tools
+    # Note that the tools section appears twice on purpose as it’s required to get the newest Android SDK tools.
+    - tools
+    - build-tools-26.0.2
+    - android-26
+
+    # Ensure some components are always there
     - extra-android-support
-    - extra-android-m2repository
+    - extra-google-google_play_services
     - extra-google-m2repository
-env:
-  matrix:
-    - BUILD_TOOLS=26.0.3  ANDROID_VERSION=26
+    - extra-android-m2repository
+
+    # Emulator images
+    - sys-img-armeabi-v7a-android-26
