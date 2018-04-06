@@ -2,10 +2,10 @@ package uk.co.jamiecruwys.gratitude
 
 import uk.co.jamiecruwys.gratitude.base.BaseActivityTest
 
-class MainActivityTest: BaseActivityTest<MainActivity>()
+class MainActivityTest: BaseActivityTest<GratitudeActivity>()
 {
-	override fun provideTestActivity(): Class<MainActivity>
+	override fun provideTestActivity(): Class<GratitudeActivity>
 	{
-		return MainActivity::class.java
+		return GratitudeActivity::class.java
 	}
 }
