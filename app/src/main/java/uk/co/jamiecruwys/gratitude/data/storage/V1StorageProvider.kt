@@ -7,7 +7,6 @@ import com.google.gson.Gson
 import com.google.gson.JsonParseException
 import com.google.gson.reflect.TypeToken
 import uk.co.jamiecruwys.gratitude.data.model.GratitudeEntry
-import java.util.*
 
 /**
  * Storage provider from version 1 that persists gratitude entries using shared preferences
@@ -42,7 +41,8 @@ class V1StorageProvider(context: Context): VersionedStorageProviderContract
 
 	override fun save(items: MutableList<GratitudeEntry>)
 	{
-		val json = gson.toJson(items)
+		val strings: ArrayList<String> = items.mapTo(ArrayList(), { it.text })
+		val json = gson.toJson(strings)
 		sharedPreferences.edit().putString(Companion.V1_SHARED_PREFERENCES_KEY, json).apply()
 	}
 
