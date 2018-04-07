@@ -24,7 +24,7 @@ object GratitudeMigrator
 	/**
 	 * Migrates from one version to another if necessary
 	 */
-	private fun migrate(from: VersionedStorageProviderContract, to: VersionedStorageProviderContract)
+	fun migrate(from: VersionedStorageProviderContract, to: VersionedStorageProviderContract)
 	{
 		if (from.hasData())
 		{
