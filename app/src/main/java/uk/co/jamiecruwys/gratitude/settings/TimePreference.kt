@@ -15,8 +15,8 @@ import java.util.*
 class TimePreference(context: Context, attributeSet: AttributeSet): DialogPreference(context, attributeSet)
 {
 	init {
-		setPositiveButtonText(R.string.time_preference_button_positive)
-		setNegativeButtonText(R.string.time_preference_button_negative)
+		setPositiveButtonText(R.string.settings_time_preference_button_positive)
+		setNegativeButtonText(R.string.settings_time_preference_button_negative)
 	}
 
 	private var hour = 0

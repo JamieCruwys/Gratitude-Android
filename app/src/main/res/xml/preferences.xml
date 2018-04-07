@@ -7,15 +7,15 @@
 
 		<SwitchPreference
 			android:key="reminders_enabled"
-			android:summary="@string/reminders_enabled_summary"
-			android:title="@string/reminders_enabled_title"/>
+			android:summary="@string/settings_reminders_enabled_summary"
+			android:title="@string/settings_reminders_enabled_title"/>
 
 		<uk.co.jamiecruwys.gratitude.settings.TimePreference
 			android:dependency="reminders_enabled"
 			android:dialogLayout="@layout/preference_time"
 			android:key="reminders_time"
-			android:summary="@string/reminders_time_summary"
-			android:title="@string/reminders_time_title"/>
+			android:summary="@string/settings_reminders_time_summary"
+			android:title="@string/settings_reminders_time_title"/>
 
 	</PreferenceCategory>
 
