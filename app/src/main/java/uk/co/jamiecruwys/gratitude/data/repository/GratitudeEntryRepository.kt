@@ -36,7 +36,13 @@ class GratitudeEntryRepository(private val storage: StorageProviderContract): Gr
 		items[position] = updated
 	}
 
-	override fun removeEntry(position: Int) { items.removeAt(position) }
+	override fun removeEntry(position: Int) {
+		try
+		{
+			items.removeAt(position)
+		}
+		catch (e: IndexOutOfBoundsException) { }
+	}
 
 	override fun removeEntry(entry: GratitudeEntry) { items.remove(entry) }
 
