@@ -1,0 +1,62 @@
+package uk.co.jamiecruwys.gratitude.settings
+
+import android.content.Context
+import android.content.res.TypedArray
+import android.preference.DialogPreference
+import android.util.AttributeSet
+import android.view.View
+import android.widget.TimePicker
+import uk.co.jamiecruwys.gratitude.*
+import java.util.*
+
+class TimePreference(context: Context, attributeSet: AttributeSet): DialogPreference(context, attributeSet)
+{
+	init {
+		setPositiveButtonText(R.string.time_preference_button_positive)
+		setNegativeButtonText(R.string.time_preference_button_negative)
+	}
+
+	private var hour = 0
+	private var minute = 0
+	private lateinit var picker: TimePicker
+
+	override fun onBindDialogView(view: View?)
+	{
+		super.onBindDialogView(view)
+
+		view?.findViewById<TimePicker>(R.id.picker)
+
+		picker.setHourCompat(0)
+		picker.setMinuteCompat(0)
+	}
+
+	override fun onDialogClosed(positiveResult: Boolean)
+	{
+		super.onDialogClosed(positiveResult)
+		if (!positiveResult) return
+
+		val hour = picker.getHourCompat().toString()
+		val minute = if (picker.getMinuteCompat() < 10) picker.getMinuteCompat().toString() + "0" else picker.getMinuteCompat().toString()
+		val time: String = hour + ":" + minute
+
+		if (callChangeListener(time)) persistString(time)
+	}
+
+	override fun onGetDefaultValue(a: TypedArray, index: Int): Any? = a.getString(index)
+
+	override fun onSetInitialValue(restoreValue: Boolean, defaultValue: Any?)
+	{
+		val time: String = if (restoreValue)
+		{
+			if (defaultValue == null) getPersistedString("00:00") else getPersistedString(defaultValue.toString())
+		}
+		else
+		{
+			defaultValue.toString()
+		}
+
+		val calendar = time.toCalendar()
+		hour = calendar?.get(Calendar.HOUR_OF_DAY) ?: 0
+		minute = calendar?.get(Calendar.MINUTE) ?: 0
+	}
+}

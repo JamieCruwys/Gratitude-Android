@@ -10,7 +10,7 @@
 			android:summary="@string/reminders_enabled_summary"
 			android:title="@string/reminders_enabled_title"/>
 
-		<uk.co.jamiecruwys.gratitude.preferences.TimePreference
+		<uk.co.jamiecruwys.gratitude.settings.TimePreference
 			android:dependency="reminders_enabled"
 			android:dialogLayout="@layout/preference_time"
 			android:key="reminders_time"
