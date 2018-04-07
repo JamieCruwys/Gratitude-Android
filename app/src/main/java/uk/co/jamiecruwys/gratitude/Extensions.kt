@@ -13,19 +13,23 @@ import java.util.*
  */
 fun String?.toCalendar(timeInMilliseconds: Long = System.currentTimeMillis()): Calendar?
 {
-	val time: List<String> = this?.split(":")?.filterNot { it.isBlank() } ?: listOf()
+	val time: List<String> = this?.replace("[^0-9:]".toRegex(), "")?.split(":")?.filterNot { it.isBlank() } ?: listOf()
 	if (time.size < 2) return null
 
-	val hourOfDay24Format = time[0].toInt()
-	if (hourOfDay24Format < 0 || hourOfDay24Format > 23) return null
+	var hourOfDay24Format = -1
+	try { hourOfDay24Format = time[0].toInt() }
+	catch (e : Exception) { return null }
+	finally { if (hourOfDay24Format < 0 || hourOfDay24Format > 23) return null }
 
-	val minute = time[1].toInt()
-	if (minute < 0 || minute > 59) return null
+	var minute = -1
+	try { minute = time[1].toInt() }
+	catch (e : Exception) { return null }
+	finally { if (minute < 0 || minute > 59) return null }
 
 	val calendar = Calendar.getInstance()
 	calendar.timeInMillis = timeInMilliseconds
-	calendar.set(Calendar.HOUR_OF_DAY, time[0].toInt())
-	calendar.set(Calendar.MINUTE, time[1].toInt())
+	calendar.set(Calendar.HOUR_OF_DAY, hourOfDay24Format)
+	calendar.set(Calendar.MINUTE, minute)
 	return calendar
 }
 

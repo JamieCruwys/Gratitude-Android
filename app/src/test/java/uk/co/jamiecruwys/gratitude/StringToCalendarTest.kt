@@ -84,15 +84,19 @@ class StringToCalendarTest
 		assertInvalidTime("       ")
 		assertInvalidTime("\n")
 		assertInvalidTime("\n\n")
+		assertInvalidTime(":")
+		assertInvalidTime("::")
+		assertInvalidTime(":::")
+		assertInvalidTime(" : : : ")
 
-		assertInvalidTime("              00:00:00")
-		assertInvalidTime("              00:00:00 ")
-		assertInvalidTime("              00:00:00 ")
-		assertInvalidTime("              00         :         00        :     00        ")
-		assertInvalidTime("              0 0         :         0 0        :     0 0        ")
-		assertInvalidTime("00:\n00:\n00")
-		assertInvalidTime("0\n0\n:\n0\n0\n:\n0\n0\n")
-		assertInvalidTime(" 0 \n 0 \n : \n 0 \n 0 \n : \n 0 \n 0 \n ")
+		assertValidTime("              00:00:00", 0, 0)
+		assertValidTime("              00:00:00 ", 0, 0)
+		assertValidTime("              00:00:00 ", 0, 0)
+		assertValidTime("              00         :         00        :     00        ", 0, 0)
+		assertValidTime("              0 0         :         0 0        :     0 0        ", 0, 0 )
+		assertValidTime("00:\n00:\n00", 0, 0)
+		assertValidTime("0\n0\n:\n0\n0\n:\n0\n0\n", 0, 0)
+		assertValidTime(" 0 \n 0 \n : \n 0 \n 0 \n : \n 0 \n 0 \n ",0, 0)
 	}
 
 	@Test
@@ -138,22 +142,9 @@ class StringToCalendarTest
 	}
 
 	@Test
-	fun `negative times`()
-	{
-		val invalid: List<String> = arrayListOf("-1", "-2", "-3")
-		for (hour: String in invalid)
-		{
-			for (minute: String in invalid)
-			{
-				assertInvalidTime("$hour:$minute")
-			}
-		}
-	}
-
-	@Test
 	fun `invalid hours`()
 	{
-		val invalidHours: List<String> = arrayListOf("-3", "-2", "-1", "24", "25", "26")
+		val invalidHours: List<String> = arrayListOf("24", "25", "26")
 		for (hour: String in invalidHours)
 		{
 			for (minute: String in Companion.VALID_MINUTES)
@@ -166,7 +157,7 @@ class StringToCalendarTest
 	@Test
 	fun `invalid minutes`()
 	{
-		val invalidMinutes: List<String> = arrayListOf("-3", "-2", "-1", "60", "61", "62")
+		val invalidMinutes: List<String> = arrayListOf("60", "61", "62")
 		for (hour: String in Companion.VALID_HOURS)
 		{
 			for (minute: String in invalidMinutes)
