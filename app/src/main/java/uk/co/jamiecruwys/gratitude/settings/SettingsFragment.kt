@@ -40,14 +40,7 @@ class SettingsFragment(private val reminderProvider: ReminderProviderContract): 
 		{
 			Companion.REMINDERS_ENABLED_KEY ->
 			{
-				if (preferenceManager.sharedPreferences.getBoolean(key, false))
-				{
-					reminderProvider.startReminding()
-				}
-				else
-				{
-					reminderProvider.stopReminding()
-				}
+				if (preferenceManager.sharedPreferences.getBoolean(key, false)) reminderProvider.startReminding() else reminderProvider.stopReminding()
 			}
 
 			Companion.REMINDERS_TIME_KEY ->
