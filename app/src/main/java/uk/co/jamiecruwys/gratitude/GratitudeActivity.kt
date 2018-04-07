@@ -6,6 +6,9 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_gratitude.*
 
+/**
+ * Gratitude activity where the user can read their gratitude list and contribute to it
+ */
 class GratitudeActivity : AppCompatActivity()
 {
 	override fun onCreate(savedInstanceState: Bundle?)

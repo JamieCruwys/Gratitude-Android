@@ -9,6 +9,9 @@ import android.widget.TimePicker
 import uk.co.jamiecruwys.gratitude.*
 import java.util.*
 
+/**
+ * Custom dialog preference that allows the user to pick a time of day to be reminded to be grateful
+ */
 class TimePreference(context: Context, attributeSet: AttributeSet): DialogPreference(context, attributeSet)
 {
 	init {

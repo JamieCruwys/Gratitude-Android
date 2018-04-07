@@ -8,6 +8,9 @@ import uk.co.jamiecruwys.gratitude.R
 import uk.co.jamiecruwys.gratitude.reminders.ReminderProviderContract
 import uk.co.jamiecruwys.gratitude.toCalendar
 
+/**
+ * Preference fragment which hosts user settings
+ */
 @SuppressLint("ValidFragment")
 class SettingsFragment(private val reminderProvider: ReminderProviderContract): PreferenceFragment(), SharedPreferences.OnSharedPreferenceChangeListener
 {
