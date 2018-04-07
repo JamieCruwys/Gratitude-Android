@@ -2,5 +2,12 @@
 <resources>
 	<color name="colorPrimary">#3F51B5</color>
 	<color name="colorPrimaryDark">#303F9F</color>
-	<color name="colorAccent">#FF4081</color>
+	<color name="colorAccent">#000000</color>
+	<color name="colorTextAccent">#FFFFFF</color>
+	<color name="colorButton">@android:color/holo_blue_dark</color>
+	<color name="colorButtonText">@android:color/white</color>
+	<color name="colorItemBackground">@android:color/white</color>
+	<color name="colorItemText">@android:color/black</color>
+	<color name="colorInputText">@android:color/white</color>
+	<color name="colorInputPanel">@color/colorPrimary</color>
 </resources>

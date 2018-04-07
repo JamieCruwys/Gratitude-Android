@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<PreferenceCategory
+		android:title="Notifications">
+
+		<SwitchPreference
+			android:key="reminders_enabled"
+			android:summary="@string/reminders_enabled_summary"
+			android:title="@string/reminders_enabled_title"/>
+
+		<uk.co.jamiecruwys.gratitude.preferences.TimePreference
+			android:dependency="reminders_enabled"
+			android:dialogLayout="@layout/preference_time"
+			android:key="reminders_time"
+			android:summary="@string/reminders_time_summary"
+			android:title="@string/reminders_time_title"/>
+
+	</PreferenceCategory>
+
+</PreferenceScreen>
