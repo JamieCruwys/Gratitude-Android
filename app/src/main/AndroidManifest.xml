@@ -9,7 +9,7 @@
 	<application
 		android:name=".GratitudeApplication"
 		android:allowBackup="true"
-		android:icon="@drawable/ic_heart_outline"
+		android:icon="@drawable/ic_heart"
 		android:label="@string/app_name"
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme">
