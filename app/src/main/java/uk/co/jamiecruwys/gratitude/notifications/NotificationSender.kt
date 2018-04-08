@@ -78,24 +78,31 @@ object NotificationSender : NotificationProviderContract
 
 	override fun sendReminderNotification(context: Context)
 	{
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) createNotificationChannel(context)
-
-		val notification = NotificationCompat.Builder(context, Companion.REMINDERS_NOTIFICATION_CHANNEL_ID)
-				.setSmallIcon(R.drawable.ic_notification)
+		val notificationBuilder = NotificationCompat.Builder(context, Companion.REMINDERS_NOTIFICATION_CHANNEL_ID)
+				.setSmallIcon(R.drawable.ic_heart)
 				.setContentTitle(context.getString(R.string.reminder_notification_title))
 				.setContentText(context.getString(R.string.reminder_notification_text))
 				.setPriority(NotificationCompat.PRIORITY_HIGH)
 				.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 				.setCategory(NotificationCompat.CATEGORY_REMINDER)
 				.setContentIntent(getReminderNotificationPendingIntent(context))
-				.addAction(getReminderNotificationReplyAction(context))
 				.setAutoCancel(true)
-				.build()
 
-		NotificationManagerCompat.from(context).notify(Companion.REMINDER_NOTIFICATION_ID, notification)
+		/**
+		 * Android 7.0 (Nougat), API level 24 added functionality so users can reply directly inside of a notification
+		 * (they can enter text which will then be routed to the notification’s parent app) using inline reply.
+		 *
+		 * Add the direct reply action only when we are targeting this version or above
+		 */
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+		{
+			notificationBuilder.addAction(getReminderNotificationReplyAction(context))
+		}
+
+		NotificationManagerCompat.from(context).notify(Companion.REMINDER_NOTIFICATION_ID, notificationBuilder.build())
 	}
 
-	private fun getReminderNotificationPendingIntent(context: Context): PendingIntent
+	private fun getReminderNotificationPendingIntent(context: Context): PendingIntent?
 	{
 		val stackBuilder = TaskStackBuilder.create(context)
 		stackBuilder.addParentStack(GratitudeActivity::class.java)
@@ -103,6 +110,10 @@ object NotificationSender : NotificationProviderContract
 		return stackBuilder.getPendingIntent(Companion.REQUEST_CODE_LAUNCH_GRATITUDE_ACTIVITY, PendingIntent.FLAG_UPDATE_CURRENT);
 	}
 
+	/**
+	 * Android 7.0 (Nougat), API level 24 is required for direct replies to notifications
+	 */
+	@RequiresApi(Build.VERSION_CODES.N)
 	private fun getReminderNotificationReplyAction(context: Context): NotificationCompat.Action
 	{
 		val remoteInput = RemoteInput.Builder(Companion.RESULT_KEY_REMINDER_REPLY)
@@ -115,6 +126,10 @@ object NotificationSender : NotificationProviderContract
 				.build()
 	}
 
+	/**
+	 * Android 7.0 (Nougat), API level 24 is required for direct replies to notifications
+	 */
+	@RequiresApi(Build.VERSION_CODES.N)
 	private fun getReminderNotificationReplyIntent(context: Context): PendingIntent
 	{
 		val intent: Intent
@@ -133,10 +148,14 @@ object NotificationSender : NotificationProviderContract
 		}
 	}
 
+	/**
+	 * Android 7.0 (Nougat), API level 24 is required for direct replies to notifications
+	 */
+	@RequiresApi(Build.VERSION_CODES.N)
 	override fun sendReplyConfirmationNotification(context: Context)
 	{
 		val notification = NotificationCompat.Builder(context, Companion.REMINDERS_NOTIFICATION_CHANNEL_ID)
-				.setSmallIcon(R.drawable.ic_notification)
+				.setSmallIcon(R.drawable.ic_heart)
 				.setContentTitle(context.getString(R.string.reminder_notification_reply_confirmation_title))
 				.setContentText(context.getString(R.string.reminder_notification_reply_confirmation_text))
 				.build()
