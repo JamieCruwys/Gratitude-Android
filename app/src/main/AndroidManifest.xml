@@ -25,14 +25,26 @@
 
 		<activity
 			android:name=".settings.SettingsActivity"
-			android:label="@string/title_settings"
+			android:label="@string/settings"
 			android:parentActivityName=".GratitudeActivity"
 			android:theme="@style/AppTheme.SettingsAccent">
 		</activity>
 
 		<receiver
-			android:name=".reminders.RemindersReceiver"
-			android:process=":remote"/>
+			android:name=".receivers.ReminderReceiver"
+			android:exported="false"
+			android:process=":remote">
+			<intent-filter>
+				<action android:name="uk.co.jamiecruwys.reminders.send"/>
+			</intent-filter>
+		</receiver>
+
+		<receiver
+			android:name=".receivers.NotificationReplyReceiver"
+			android:enabled="true"
+			android:exported="false">
+		</receiver>
+
 	</application>
 
 </manifest>

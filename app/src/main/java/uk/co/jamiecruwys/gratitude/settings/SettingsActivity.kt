@@ -1,13 +1,16 @@
 package uk.co.jamiecruwys.gratitude.settings
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.app.Fragment
+import uk.co.jamiecruwys.gratitude.base.BaseActivityWithFragment
+import uk.co.jamiecruwys.gratitude.reminders.ReminderSender
 
-class SettingsActivity : AppCompatActivity()
+/**
+ * Settings
+ */
+class SettingsActivity : BaseActivityWithFragment()
 {
-	override fun onCreate(savedInstanceState: Bundle?)
+	override fun provideFragment(): Fragment
 	{
-		super.onCreate(savedInstanceState)
-		TODO("not implemented")
+		return SettingsFragment(ReminderSender(this))
 	}
 }

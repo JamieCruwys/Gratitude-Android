@@ -39,7 +39,7 @@
 			android:layout_centerVertical="true"
 			android:layout_marginRight="@dimen/activity_horizontal_margin"
 			android:layout_toLeftOf="@id/send"
-			android:hint="@string/grateful_input_hint"
+			android:hint="@string/gratitude_entry_text_hint"
 			android:textColor="@color/colorInputText"
 			android:textColorHint="@color/colorInputText"/>
 
@@ -68,7 +68,7 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
 			android:gravity="center"
-			android:text="@string/emptyListText"
+			android:text="@string/gratitude_items_empty_text"
 			android:textSize="24sp"/>
 
 	</LinearLayout>
