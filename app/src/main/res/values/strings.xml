@@ -31,7 +31,6 @@
 
 	<string name="settings_developer_title">Developer</string>
 	<string name="settings_developer_website_title">🕸 Visit developer\'s website</string>
-	<string name="settings_developer_linkedin_title">🔗 Visit developer\'s LinkedIn profile</string>
 	<string name="settings_developer_donate_title">💸 Donate to developer</string>
 
 	<string name="settings_time_preference_button_positive">Set</string>
