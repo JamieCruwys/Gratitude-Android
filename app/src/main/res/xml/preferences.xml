@@ -6,11 +6,13 @@
 		android:title="Notifications">
 
 		<SwitchPreference
+			android:defaultValue="true"
 			android:key="reminders_enabled"
 			android:summary="@string/settings_reminders_enabled_summary"
 			android:title="@string/settings_reminders_enabled_title"/>
 
 		<uk.co.jamiecruwys.gratitude.settings.TimePreference
+			android:defaultValue="20:00"
 			android:dependency="reminders_enabled"
 			android:dialogLayout="@layout/preference_time"
 			android:key="reminders_time"
