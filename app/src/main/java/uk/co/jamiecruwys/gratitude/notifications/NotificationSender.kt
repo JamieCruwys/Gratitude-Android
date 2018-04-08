@@ -132,26 +132,11 @@ object NotificationSender : NotificationProviderContract
 	@RequiresApi(Build.VERSION_CODES.N)
 	private fun getReminderNotificationReplyIntent(context: Context): PendingIntent
 	{
-		val intent: Intent
-		return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-		{
-			intent = Intent(context, NotificationReplyReceiver::class.java)
-			intent.action = Companion.REMINDER_NOTIFICATION_REPLY_ACTION
-			PendingIntent.getBroadcast(context, Companion.REQUEST_CODE_REPLY_TO_REMINDER_NOTIFICATION, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-		}
-		else
-		{
-			intent = Intent(context, GratitudeActivity::class.java)
-			intent.action = Companion.REMINDER_NOTIFICATION_REPLY_ACTION
-			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-			PendingIntent.getActivity(context, Companion.REQUEST_CODE_REPLY_TO_REMINDER_NOTIFICATION, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-		}
+		val intent = Intent(context, NotificationReplyReceiver::class.java)
+		intent.action = Companion.REMINDER_NOTIFICATION_REPLY_ACTION
+		return PendingIntent.getBroadcast(context, Companion.REQUEST_CODE_REPLY_TO_REMINDER_NOTIFICATION, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 	}
 
-	/**
-	 * Android 7.0 (Nougat), API level 24 is required for direct replies to notifications
-	 */
-	@RequiresApi(Build.VERSION_CODES.N)
 	override fun sendReplyConfirmationNotification(context: Context)
 	{
 		val notification = NotificationCompat.Builder(context, Companion.REMINDERS_NOTIFICATION_CHANNEL_ID)
