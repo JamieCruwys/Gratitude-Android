@@ -40,7 +40,7 @@ class TimePreference(context: Context, attributeSet: AttributeSet): DialogPrefer
 
 		val hour = picker.getHourCompat().toString()
 		val minute = if (picker.getMinuteCompat() < 10) picker.getMinuteCompat().toString() + "0" else picker.getMinuteCompat().toString()
-		val time: String = hour + ":" + minute
+		val time = "$hour:$minute"
 
 		if (callChangeListener(time)) persistString(time)
 	}
