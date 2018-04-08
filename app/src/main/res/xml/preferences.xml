@@ -3,21 +3,82 @@
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<PreferenceCategory
-		android:title="Notifications">
+		android:title="@string/settings_reminders_title">
 
 		<SwitchPreference
 			android:defaultValue="true"
 			android:key="reminders_enabled"
-			android:summary="@string/settings_reminders_enabled_summary"
-			android:title="@string/settings_reminders_enabled_title"/>
+			android:summaryOff="@string/settings_reminders_enabled_off"
+			android:summaryOn="@string/settings_reminders_enabled_on"
+			android:title="Remind me to be grateful"/>
 
 		<uk.co.jamiecruwys.gratitude.settings.TimePreference
 			android:defaultValue="20:00"
 			android:dependency="reminders_enabled"
 			android:dialogLayout="@layout/preference_time"
 			android:key="reminders_time"
-			android:summary="@string/settings_reminders_time_summary"
 			android:title="@string/settings_reminders_time_title"/>
+
+	</PreferenceCategory>
+
+	<PreferenceCategory
+		android:title="@string/settings_security_title">
+
+		<SwitchPreference
+			android:defaultValue="true"
+			android:key="security_vault"
+			android:summaryOff="@string/settings_security_vault_off"
+			android:summaryOn="@string/settings_security_vault_on"
+			android:title="@string/settings_security_vault_title"/>
+
+		<SwitchPreference
+			android:key="security_backup"
+			android:summaryOff="@string/settings_security_backup_off"
+			android:summaryOn="@string/settings_security_backup_on"
+			android:title="Backup data"/>
+
+		<Preference
+			android:key="security_export"
+			android:title="@string/settings_security_export_title"/>
+
+		<!-- 🔐 Choose how to secure your vault -->
+		<!-- 📌 Secure using a 4 digit pin -->
+		<!-- ✉️ Secure using a password -->
+		<!-- 👆 Secure via Fingerprint -->
+
+	</PreferenceCategory>
+
+	<PreferenceCategory
+		android:title="@string/settings_feedback_title">
+
+		<Preference
+			android:key="feedback_report_bug"
+			android:title="@string/settings_feedback_report_bug_title"/>
+
+		<Preference
+			android:key="feedback_suggest_feature"
+			android:title="@string/settings_feedback_suggest_feature_title"/>
+
+		<Preference
+			android:key="feedback_email"
+			android:title="@string/settings_feedback_email_title"/>
+
+	</PreferenceCategory>
+
+	<PreferenceCategory
+		android:title="@string/settings_developer_title">
+
+		<Preference
+			android:key="developer_website"
+			android:title="@string/settings_developer_website_title"/>
+
+		<Preference
+			android:key="developer_linkedin"
+			android:title="@string/settings_developer_linkedin_title"/>
+
+		<Preference
+			android:key="developer_donate"
+			android:title="@string/settings_developer_donate_title"/>
 
 	</PreferenceCategory>
 

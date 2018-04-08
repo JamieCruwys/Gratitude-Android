@@ -8,10 +8,32 @@
 
 	<!-- Settings -->
 	<string name="settings">Settings</string>
-	<string name="settings_reminders_enabled_title">Enable reminders</string>
-	<string name="settings_reminders_enabled_summary">To remind you to be grateful each day</string>
-	<string name="settings_reminders_time_title">Set reminder time</string>
-	<string name="settings_reminders_time_summary">Choose a convenient time to be grateful</string>
+
+	<string name="settings_reminders_title">Reminders</string>
+	<string name="settings_reminders_enabled_title">Remind me to be grateful</string>
+	<string name="settings_reminders_enabled_on">🔔 You will be reminded to be grateful each day</string>
+	<string name="settings_reminders_enabled_off">⛔️ You are not receiving reminders to be grateful</string>
+	<string name="settings_reminders_time_title">🕖 Change reminder time</string>
+
+	<string name="settings_security_title">Security</string>
+	<string name="settings_security_vault_title">Vault</string>
+	<string name="settings_security_vault_on">🔒 Your gratitude journal is being protected</string>
+	<string name="settings_security_vault_off">🔓 Your gratitude journal is not protected</string>
+	<string name="settings_security_backup_title">Backup data</string>
+	<string name="settings_security_backup_on">🌤 Your data is being backed up</string>
+	<string name="settings_security_backup_off">🌩 Your data is not backed up</string>
+	<string name="settings_security_export_title">✈️ Export your data</string>
+
+	<string name="settings_feedback_title">Feedback</string>
+	<string name="settings_feedback_report_bug_title">🐛 Report a bug</string>
+	<string name="settings_feedback_suggest_feature_title">🎤 Suggest a feature</string>
+	<string name="settings_feedback_email_title">📧 Email developer</string>
+
+	<string name="settings_developer_title">Developer</string>
+	<string name="settings_developer_website_title">🕸 Visit developer\'s website</string>
+	<string name="settings_developer_linkedin_title">🔗 Visit developer\'s LinkedIn profile</string>
+	<string name="settings_developer_donate_title">💸 Donate to developer</string>
+
 	<string name="settings_time_preference_button_positive">Set</string>
 	<string name="settings_time_preference_button_negative">Cancel</string>
 
