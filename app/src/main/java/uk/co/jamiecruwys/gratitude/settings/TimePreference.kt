@@ -27,8 +27,7 @@ class TimePreference(context: Context, attributeSet: AttributeSet): DialogPrefer
 	{
 		super.onBindDialogView(view)
 
-		view?.findViewById<TimePicker>(R.id.picker)
-
+		picker = view?.findViewById(R.id.picker) as TimePicker
 		picker.setHourCompat(0)
 		picker.setMinuteCompat(0)
 	}
