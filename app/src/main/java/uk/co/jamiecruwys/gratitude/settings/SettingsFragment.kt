@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.preference.PreferenceFragment
 import uk.co.jamiecruwys.gratitude.R
 import uk.co.jamiecruwys.gratitude.reminders.ReminderProviderContract
-import uk.co.jamiecruwys.gratitude.toCalendar
 
 /**
  * Preference fragment which hosts user settings
@@ -43,13 +42,20 @@ class SettingsFragment(private val reminderProvider: ReminderProviderContract): 
 		{
 			Companion.REMINDERS_ENABLED_KEY ->
 			{
-				if (preferenceManager.sharedPreferences.getBoolean(key, false)) reminderProvider.startReminding() else reminderProvider.stopReminding()
+				if (preferenceManager.sharedPreferences.getBoolean(key, false))
+				{
+					reminderProvider.startReminding()
+				}
+				else
+				{
+					reminderProvider.stopReminding()
+				}
 			}
 
 			Companion.REMINDERS_TIME_KEY ->
 			{
-				val time = preferenceManager.sharedPreferences.getString(key, null)
-				reminderProvider.setReminderTimes(time.toCalendar())
+				reminderProvider.stopReminding()
+				reminderProvider.startReminding()
 			}
 		}
 	}
