@@ -4,7 +4,6 @@ import android.content.ContentValues.TAG
 import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
-import com.google.gson.JsonParseException
 import com.google.gson.reflect.TypeToken
 import uk.co.jamiecruwys.gratitude.data.model.GratitudeEntry
 
@@ -30,7 +29,7 @@ class V1StorageProvider(context: Context): VersionedStorageProviderContract
 			val data: MutableList<String> = Gson().fromJson(json, object : TypeToken<Collection<String>>() {}.type)
 			data.mapTo(ArrayList(), { GratitudeEntry(text = it) })
 		}
-		catch (e: JsonParseException)
+		catch (e: Exception)
 		{
 			Log.e(TAG, "Failed to get gratitude entries from JSON")
 			ArrayList()

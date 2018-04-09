@@ -6,7 +6,7 @@ import android.content.Intent
 import android.support.v4.app.RemoteInput
 import uk.co.jamiecruwys.gratitude.data.model.GratitudeEntry
 import uk.co.jamiecruwys.gratitude.data.repository.GratitudeEntryRepository
-import uk.co.jamiecruwys.gratitude.data.storage.V2StorageProvider
+import uk.co.jamiecruwys.gratitude.data.storage.V1StorageProvider
 import uk.co.jamiecruwys.gratitude.notifications.NotificationSender
 
 /**
@@ -21,7 +21,7 @@ class NotificationReplyReceiver: BroadcastReceiver()
 			val message = getMessageText(intent)
 			if (!message.isNullOrBlank())
 			{
-				GratitudeEntryRepository(V2StorageProvider()).addEntry(GratitudeEntry(text = message.toString()))
+				GratitudeEntryRepository(V1StorageProvider(context)).addEntry(GratitudeEntry(text = message.toString()))
 			}
 			NotificationSender.sendReplyConfirmationNotification(context)
 		}
