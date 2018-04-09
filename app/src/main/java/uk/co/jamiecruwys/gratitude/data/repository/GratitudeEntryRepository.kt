@@ -8,9 +8,16 @@ import uk.co.jamiecruwys.gratitude.data.storage.StorageProviderContract
  */
 class GratitudeEntryRepository(private val storage: StorageProviderContract): GratitudeEntryProviderContract
 {
-	private val items: MutableList<GratitudeEntry> = load()
+	private val items: MutableList<GratitudeEntry> = ArrayList()
 
-	override fun load(): MutableList<GratitudeEntry> = storage.load()
+	init { load() }
+
+	override fun load(): MutableList<GratitudeEntry>
+	{
+		items.clear()
+		items.addAll(storage.load())
+		return items
+	}
 
 	override fun getCount(): Int = items.size
 
@@ -18,7 +25,11 @@ class GratitudeEntryRepository(private val storage: StorageProviderContract): Gr
 
 	override fun getEntries(): MutableList<GratitudeEntry> = items
 
-	override fun addEntry(entry: GratitudeEntry) { items.add(entry) }
+	override fun addEntry(entry: GratitudeEntry)
+	{
+		items.add(entry)
+		save(items)
+	}
 
 	override fun updateEntry(position: Int, updated: GratitudeEntry)
 	{
@@ -27,6 +38,7 @@ class GratitudeEntryRepository(private val storage: StorageProviderContract): Gr
 			items[position] = updated
 		}
 		catch (e: IndexOutOfBoundsException) { }
+		save(items)
 	}
 
 	override fun updateEntry(current: GratitudeEntry, updated: GratitudeEntry)
@@ -34,6 +46,7 @@ class GratitudeEntryRepository(private val storage: StorageProviderContract): Gr
 		val position = items.indexOf(current)
 		if (position < 0) return
 		items[position] = updated
+		save(items)
 	}
 
 	override fun removeEntry(position: Int) {
@@ -42,11 +55,20 @@ class GratitudeEntryRepository(private val storage: StorageProviderContract): Gr
 			items.removeAt(position)
 		}
 		catch (e: IndexOutOfBoundsException) { }
+		save(items)
 	}
 
-	override fun removeEntry(entry: GratitudeEntry) { items.remove(entry) }
+	override fun removeEntry(entry: GratitudeEntry)
+	{
+		items.remove(entry)
+		save(items)
+	}
 
-	override fun clear() { items.clear() }
+	override fun clear()
+	{
+		items.clear()
+		save(items)
+	}
 
 	override fun save(items: MutableList<GratitudeEntry>) = storage.save(items)
 }

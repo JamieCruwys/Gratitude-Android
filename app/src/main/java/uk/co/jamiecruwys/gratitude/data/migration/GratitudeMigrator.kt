@@ -18,7 +18,8 @@ object GratitudeMigrator
 		val v1 = V1StorageProvider(context)
 		val v2 = V2StorageProvider()
 
-		migrate(v1, v2)
+		// TODO: Implement v2
+		// migrate(v1, v2)
 	}
 
 	/**

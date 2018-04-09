@@ -5,9 +5,9 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.preference.PreferenceManager
+import uk.co.jamiecruwys.gratitude.R
 import uk.co.jamiecruwys.gratitude.notifications.NotificationSender
 import uk.co.jamiecruwys.gratitude.receivers.ReminderReceiver
-import uk.co.jamiecruwys.gratitude.settings.SettingsFragment
 import uk.co.jamiecruwys.gratitude.toCalendar
 import java.util.*
 
@@ -37,6 +37,7 @@ class ReminderSender(val context: Context): ReminderProviderContract
 
 	private fun updateAlarmTime()
 	{
-		alarmTime = PreferenceManager.getDefaultSharedPreferences(context).getString(SettingsFragment.Companion.REMINDERS_TIME_KEY, null).toCalendar()
+		val remindersTimePreferenceKey = context.getString(R.string.settings_reminders_time_key)
+		alarmTime = PreferenceManager.getDefaultSharedPreferences(context).getString(remindersTimePreferenceKey, null).toCalendar()
 	}
 }

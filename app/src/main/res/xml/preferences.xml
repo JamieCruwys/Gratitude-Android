@@ -3,80 +3,60 @@
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<PreferenceCategory
-		android:title="@string/settings_reminders_title">
+		android:title="@string/settings_reminders_category">
 
 		<SwitchPreference
-			android:defaultValue="true"
-			android:key="reminders_enabled"
+			android:defaultValue="@string/settings_reminders_enabled_default_value"
+			android:key="@string/settings_reminders_enabled_key"
 			android:summaryOff="@string/settings_reminders_enabled_off"
 			android:summaryOn="@string/settings_reminders_enabled_on"
-			android:title="Remind me to be grateful"/>
+			android:title="@string/settings_reminders_enabled_title"/>
 
 		<uk.co.jamiecruwys.gratitude.settings.TimePreference
-			android:defaultValue="20:00"
-			android:dependency="reminders_enabled"
+			android:defaultValue="@string/settings_reminders_time_default_value"
+			android:dependency="@string/settings_reminders_enabled_key"
 			android:dialogLayout="@layout/preference_time"
-			android:key="reminders_time"
+			android:key="@string/settings_reminders_time_key"
 			android:title="@string/settings_reminders_time_title"/>
 
 	</PreferenceCategory>
 
 	<PreferenceCategory
-		android:title="@string/settings_security_title">
+		android:title="@string/settings_security_category">
 
 		<SwitchPreference
-			android:defaultValue="true"
-			android:key="security_vault"
+			android:defaultValue="@string/settings_security_vault_default_value"
+			android:key="@string/settings_security_vault_key"
 			android:summaryOff="@string/settings_security_vault_off"
 			android:summaryOn="@string/settings_security_vault_on"
 			android:title="@string/settings_security_vault_title"/>
 
 		<SwitchPreference
-			android:key="security_backup"
-			android:summaryOff="@string/settings_security_backup_off"
-			android:summaryOn="@string/settings_security_backup_on"
-			android:title="Backup data"/>
+			android:key="@string/settings_security_backup_enabled_key"
+			android:summaryOff="@string/settings_security_backup_enabled_off"
+			android:summaryOn="@string/settings_security_backup_enabled_on"
+			android:title="@string/settings_security_backup_enabled_title"/>
 
 		<Preference
-			android:key="security_export"
+			android:key="@string/settings_security_export_key"
 			android:title="@string/settings_security_export_title"/>
-
-		<!-- 🔐 Choose how to secure your vault -->
-		<!-- 📌 Secure using a 4 digit pin -->
-		<!-- ✉️ Secure using a password -->
-		<!-- 👆 Secure via Fingerprint -->
 
 	</PreferenceCategory>
 
-	<!--<PreferenceCategory-->
-		<!--android:title="@string/settings_feedback_title">-->
-
-		<!--<Preference-->
-			<!--android:key="feedback_report_bug"-->
-			<!--android:title="@string/settings_feedback_report_bug_title"/>-->
-
-		<!--<Preference-->
-			<!--android:key="feedback_suggest_feature"-->
-			<!--android:title="@string/settings_feedback_suggest_feature_title"/>-->
-
-
-
-	<!--</PreferenceCategory>-->
-
 	<PreferenceCategory
-		android:title="@string/settings_developer_title">
+		android:title="@string/settings_developer_category">
 
 		<Preference
-			android:key="feedback_email"
-			android:title="@string/settings_feedback_email_title"/>
+			android:key="@string/settings_developer_email_key"
+			android:title="@string/settings_developer_email_title"/>
 
 		<Preference
-			android:key="developer_website"
+			android:key="@string/settings_developer_website_key"
 			android:title="@string/settings_developer_website_title"/>
 
-		<!--<Preference-->
-			<!--android:key="developer_donate"-->
-			<!--android:title="@string/settings_developer_donate_title"/>-->
+		<Preference
+			android:key="@string/settings_developer_donate_key"
+			android:title="@string/settings_developer_donate_title"/>
 
 	</PreferenceCategory>
 
