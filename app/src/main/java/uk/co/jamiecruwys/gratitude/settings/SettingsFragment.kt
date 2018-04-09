@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.preference.PreferenceFragment
 import android.support.design.widget.Snackbar
 import uk.co.jamiecruwys.gratitude.R
+import uk.co.jamiecruwys.gratitude.customtabs.GratitudeCustomTabs
 import uk.co.jamiecruwys.gratitude.reminders.ReminderProviderContract
 
 
@@ -17,38 +18,35 @@ import uk.co.jamiecruwys.gratitude.reminders.ReminderProviderContract
 @SuppressLint("ValidFragment")
 class SettingsFragment(private val reminderProvider: ReminderProviderContract): PreferenceFragment(), SharedPreferences.OnSharedPreferenceChangeListener
 {
-	object Companion {
-		const val REMINDERS_ENABLED_KEY = "reminders_enabled"
-		const val REMINDERS_TIME_KEY = "reminders_time"
-		const val SECURITY_VAULT_KEY = "security_vault"
-		const val SECURITY_BACKUP_KEY = "security_backup"
-		const val SECURITY_EXPORT_KEY = "security_export"
-		const val FEEDBACK_EMAIL_KEY = "feedback_email"
-		const val DEVELOPER_WEBSITE_KEY = "developer_website"
-	}
-
 	override fun onCreate(savedInstanceState: Bundle?)
 	{
 		super.onCreate(savedInstanceState)
 		addPreferencesFromResource(R.xml.preferences)
 
-		findPreference(Companion.SECURITY_EXPORT_KEY).setOnPreferenceClickListener{
+		findPreference(getString(R.string.settings_security_export_key)).setOnPreferenceClickListener{
 			Snackbar.make(view, "Coming soon...", Snackbar.LENGTH_SHORT).show()
 			return@setOnPreferenceClickListener false
 		}
 
-		findPreference(Companion.FEEDBACK_EMAIL_KEY).setOnPreferenceClickListener{
+		findPreference(getString(R.string.settings_developer_email_key)).setOnPreferenceClickListener{
 			val intent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "gratitude@jamiecruwys.co.uk", null))
-			intent.putExtra(Intent.EXTRA_SUBJECT, "Gratitude Feedback")
+			intent.putExtra(Intent.EXTRA_SUBJECT, "Gratitude")
 			intent.putExtra(Intent.EXTRA_TEXT, "")
 			startActivity(Intent.createChooser(intent, "Choose an Email client:"))
 			return@setOnPreferenceClickListener false
 		}
 
-		findPreference(Companion.DEVELOPER_WEBSITE_KEY).setOnPreferenceClickListener{
-			startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://www.jamiecruwys.co.uk")))
+		findPreference(getString(R.string.settings_developer_website_key)).setOnPreferenceClickListener{
+			GratitudeCustomTabs.launch(activity, "http://www.jamiecruwys.co.uk")
 			return@setOnPreferenceClickListener false
 		}
+
+		findPreference(getString(R.string.settings_developer_donate_key)).setOnPreferenceClickListener{
+			GratitudeCustomTabs.launch(activity, "https://www.paypal.me/JamieCruwys")
+			return@setOnPreferenceClickListener false
+		}
+
+		GratitudeCustomTabs.warm(activity)
 	}
 
 	override fun onResume()
@@ -67,7 +65,7 @@ class SettingsFragment(private val reminderProvider: ReminderProviderContract): 
 	{
 		when(key)
 		{
-			Companion.REMINDERS_ENABLED_KEY ->
+			getString(R.string.settings_reminders_enabled_key) ->
 			{
 				if (preferenceManager.sharedPreferences.getBoolean(key, false))
 				{
@@ -79,21 +77,21 @@ class SettingsFragment(private val reminderProvider: ReminderProviderContract): 
 				}
 			}
 
-			Companion.REMINDERS_TIME_KEY ->
+			getString(R.string.settings_reminders_time_key) ->
 			{
 				reminderProvider.stopReminding()
 				reminderProvider.startReminding()
 			}
 
-			Companion.SECURITY_VAULT_KEY ->
+			getString(R.string.settings_security_vault_key) ->
 			{
-				val enabled = preferenceManager.sharedPreferences.getBoolean(key, false)
+				// val enabled = preferenceManager.sharedPreferences.getBoolean(key, false)
 				// TODO: Prompt security passcode/password
 			}
 
-			Companion.SECURITY_BACKUP_KEY ->
+			getString(R.string.settings_security_backup_enabled_key) ->
 			{
-				val enabled = preferenceManager.sharedPreferences.getBoolean(key, false)
+				// val enabled = preferenceManager.sharedPreferences.getBoolean(key, false)
 				// TODO: Show the user how to enable backup
 			}
 		}
