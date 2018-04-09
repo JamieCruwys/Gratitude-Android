@@ -29,7 +29,11 @@ class GratitudeActivity : AppCompatActivity()
 		setSupportActionBar(toolbar)
 
 		entryList.adapter = adapter
-		entryList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
+
+		// Leave this alone. It works.
+		val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
+		layoutManager.stackFromEnd = true
+		entryList.layoutManager = layoutManager
 
 		send.setOnClickListener {
 			var text = gratitudeTextView.text.toString().trim()
