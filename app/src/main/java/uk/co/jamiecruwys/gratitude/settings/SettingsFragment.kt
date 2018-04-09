@@ -45,8 +45,6 @@ class SettingsFragment(private val reminderProvider: ReminderProviderContract): 
 			GratitudeCustomTabs.launch(activity, "https://www.paypal.me/JamieCruwys")
 			return@setOnPreferenceClickListener false
 		}
-
-		GratitudeCustomTabs.warm(activity)
 	}
 
 	override fun onResume()
