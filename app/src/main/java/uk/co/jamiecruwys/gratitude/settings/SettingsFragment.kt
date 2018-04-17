@@ -8,9 +8,7 @@ import android.os.Bundle
 import android.preference.PreferenceFragment
 import android.support.design.widget.Snackbar
 import uk.co.jamiecruwys.gratitude.R
-import uk.co.jamiecruwys.gratitude.customtabs.GratitudeCustomTabs
 import uk.co.jamiecruwys.gratitude.reminders.ReminderProviderContract
-
 
 /**
  * Preference fragment which hosts user settings
@@ -37,12 +35,14 @@ class SettingsFragment(private val reminderProvider: ReminderProviderContract): 
 		}
 
 		findPreference(getString(R.string.settings_developer_website_key)).setOnPreferenceClickListener{
-			GratitudeCustomTabs.launch(activity, "http://www.jamiecruwys.co.uk")
+			val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.jamiecruwys.co.uk"))
+			startActivity(intent)
 			return@setOnPreferenceClickListener false
 		}
 
 		findPreference(getString(R.string.settings_developer_donate_key)).setOnPreferenceClickListener{
-			GratitudeCustomTabs.launch(activity, "https://www.paypal.me/JamieCruwys")
+			val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.me/JamieCruwys"))
+			startActivity(intent)
 			return@setOnPreferenceClickListener false
 		}
 	}
