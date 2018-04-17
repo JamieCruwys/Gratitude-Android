@@ -1,5 +1,6 @@
 package uk.co.jamiecruwys.gratitude
 
+import uk.co.jamiecruwys.gratitude.activity.GratitudeActivity
 import uk.co.jamiecruwys.gratitude.base.BaseActivityTest
 
 class MainActivityTest: BaseActivityTest<GratitudeActivity>()

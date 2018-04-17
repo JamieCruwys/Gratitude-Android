@@ -1,19 +1,27 @@
-package uk.co.jamiecruwys.gratitude
+package uk.co.jamiecruwys.gratitude.activity
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_gratitude.*
 import kotlinx.android.synthetic.main.content_gratitude.*
+import uk.co.jamiecruwys.gratitude.R
 import uk.co.jamiecruwys.gratitude.data.model.GratitudeEntry
 import uk.co.jamiecruwys.gratitude.data.repository.GratitudeEntryRepository
 import uk.co.jamiecruwys.gratitude.data.storage.V1StorageProvider
 import uk.co.jamiecruwys.gratitude.settings.SettingsActivity
+import android.support.v7.widget.helper.ItemTouchHelper
+import uk.co.jamiecruwys.gratitude.swipe.SwipeDeleteItemCallback
+import uk.co.jamiecruwys.gratitude.swipe.SwipeDeleteItemDecoration
+
 
 /**
  * Gratitude activity where the user can read their gratitude list and contribute to it
@@ -35,8 +43,16 @@ class GratitudeActivity : AppCompatActivity()
 		layoutManager.stackFromEnd = true
 		entryList.layoutManager = layoutManager
 
+		entryList.addItemDecoration(SwipeDeleteItemDecoration(ColorDrawable(Color.WHITE), ColorDrawable(Color.RED)))
+
+		val itemTouchHelper = ItemTouchHelper(SwipeDeleteItemCallback(this, ItemTouchHelper.LEFT, { position: Int ->
+			GratitudeEntryRepository(V1StorageProvider(this)).removeEntry(position)
+			refreshList()
+		}))
+		itemTouchHelper.attachToRecyclerView(entryList)
+
 		send.setOnClickListener {
-			var text = gratitudeTextView.text.toString().trim()
+			val text = gratitudeTextView.text.toString().trim()
 
 			if (text.isBlank())
 			{

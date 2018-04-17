@@ -1,4 +1,4 @@
-package uk.co.jamiecruwys.gratitude
+package uk.co.jamiecruwys.gratitude.activity
 
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_gratitude.view.*
+import uk.co.jamiecruwys.gratitude.R
 import uk.co.jamiecruwys.gratitude.data.model.GratitudeEntry
 
 class GratitudeAdapter(diffCallback: DiffUtil.ItemCallback<GratitudeEntry>): ListAdapter<GratitudeEntry, GratitudeViewHolder>(diffCallback)

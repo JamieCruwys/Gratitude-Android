@@ -1,4 +1,4 @@
-package uk.co.jamiecruwys.gratitude
+package uk.co.jamiecruwys.gratitude.activity
 
 import android.support.v7.util.DiffUtil
 import uk.co.jamiecruwys.gratitude.data.model.GratitudeEntry

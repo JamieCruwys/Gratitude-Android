@@ -13,7 +13,7 @@ import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
 import android.support.v4.app.RemoteInput
 import android.support.v4.app.TaskStackBuilder
-import uk.co.jamiecruwys.gratitude.GratitudeActivity
+import uk.co.jamiecruwys.gratitude.activity.GratitudeActivity
 import uk.co.jamiecruwys.gratitude.R
 import uk.co.jamiecruwys.gratitude.receivers.NotificationReplyReceiver
 
